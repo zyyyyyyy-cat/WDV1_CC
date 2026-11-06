@@ -1,0 +1,479 @@
+2026-10-29 15:56:38,219 transreid INFO: Saving model in the path :logs/LRA_UAD_A0_DDP
+2026-10-29 15:56:38,220 transreid INFO: Namespace(config_file='configs/LRA_UAD_A0.yml', local_rank=0, opts=['MODEL.DIST_TRAIN', 'True', 'MODEL.PRETRAIN_PATH', '/project/code/WHU_base/WHU_DDP/logs/UAD_1000_DDP/transformer_120.pth', 'DATASETS.ROOT_DIR', '/project/code/data', 'SOLVER.IMS_PER_BATCH', '256', 'SOLVER.BASE_LR', '0.000064', 'OUTPUT_DIR', 'logs/LRA_UAD_A0_DDP'])
+2026-10-29 15:56:38,220 transreid INFO: DDP initialized with 4 processes; global sampler batch=256, per-GPU sampler batch=64, actual images per GPU=192
+2026-10-29 15:56:38,220 transreid INFO: Loaded configuration file configs/LRA_UAD_A0.yml
+2026-10-29 15:56:38,221 transreid INFO: Running with config:
+DATALOADER:
+  NUM_INSTANCE: 4
+  NUM_WORKERS: 8
+  SAMPLER: PKM
+DATASETS:
+  DATASET_DIR: WHU-MARS
+  FILTER_GD: False
+  MODALITIES: ('RGB', 'IR', 'Thermal')
+  NAMES: WHU-MARS
+  ROOT_DIR: /project/code/data
+INPUT:
+  PADDING: 10
+  PIXEL_MEAN: [0.5, 0.5, 0.5]
+  PIXEL_STD: [0.5, 0.5, 0.5]
+  PROB: 0.5
+  RE_PROB: 0.5
+  SIZE_TEST: [256, 128]
+  SIZE_TRAIN: [256, 128]
+MODEL:
+  ATT_DROP_RATE: 0.0
+  COS_LAYER: False
+  DEVICE: cuda
+  DEVICE_ID: 0
+  DEVIDE_LENGTH: 4
+  DIST_TRAIN: True
+  DROP_OUT: 0.0
+  DROP_PATH: 0.1
+  EMA: True
+  EMA_DECAY: 0.999
+  GPD_COUNT_EMA: False
+  GPD_EMA_MAX: 0.2
+  GPD_EMA_MIN: 0.2
+  GPD_MOMENTUM: 0.2
+  GPD_TAU_FINAL: 0.03
+  GPD_TAU_INIT: 0.03
+  GPD_TAU_WARM: 0
+  GPD_WARMSTART: True
+  ID_LOSS_TYPE: softmax
+  ID_LOSS_WEIGHT: 1.0
+  IF_LABELSMOOTH: off
+  IF_WITH_CENTER: no
+  JPM: False
+  LAST_STRIDE: 1
+  LLRD_DECAY: 0.0
+  METRIC_LOSS_TYPE: wrt
+  NAME: transformer
+  NECK: bnneck
+  NO_MARGIN: True
+  PCA_LOSS_WEIGHT: 0.01
+  PRETRAIN_CHOICE: finetune
+  PRETRAIN_PATH: /project/code/WHU_base/WHU_DDP/logs/UAD_1000_DDP/transformer_120.pth
+  RE_ARRANGE: True
+  SHIFT_NUM: 5
+  SHUFFLE_GROUP: 2
+  SIE_CAMERA: False
+  SIE_COE: 3.0
+  SIE_VIEW: False
+  STRIDE_SIZE: [16, 16]
+  TRANSFORMER_TYPE: vit_base_in
+  TRIPLET_LOSS_WEIGHT: 1.0
+  WRT_CAMERA: False
+  WRT_CAM_NEG_WEIGHT: 0.25
+  WRT_NORM_BETA: 0.0
+  WRT_NORM_WARMUP: 5
+OUTPUT_DIR: logs/LRA_UAD_A0_DDP
+SOLVER:
+  BASE_LR: 6.4e-05
+  BIAS_LR_FACTOR: 2
+  CENTER_LOSS_WEIGHT: 0.0005
+  CENTER_LR: 0.5
+  CHECKPOINT_PERIOD: 10
+  COSINE_MARGIN: 0.5
+  COSINE_SCALE: 30
+  EVAL_PERIOD: 5
+  GAMMA: 0.1
+  IMS_PER_BATCH: 256
+  LARGE_FC_LR: False
+  LOG_PERIOD: 50
+  LOSS_TYPE: base+pca+gpd
+  LR_MIN_FACTOR: 1.0
+  MARGIN: 0.3
+  MAX_EPOCHS: 30
+  MOMENTUM: 0.9
+  OPTIMIZER_NAME: SGD
+  SCHEDULER: constant
+  SEED: 1234
+  STEPS: (40, 70)
+  WARMUP_EPOCHS: 0
+  WARMUP_FACTOR: 0.01
+  WARMUP_METHOD: linear
+  WEIGHT_DECAY: 0.0001
+  WEIGHT_DECAY_BIAS: 0.0001
+TEST:
+  DETAILED_DOMAIN_EVAL: False
+  DIST_MAT: dist_mat.npy
+  EVAL: False
+  FEAT_NORM: yes
+  IMS_PER_BATCH: 512
+  NECK_FEAT: before
+  RE_RANKING: False
+  TOP_K_EVAL: 0
+  TTA_FLIP: True
+  WEIGHT: 
+2026-10-29 15:56:41,775 transreid.train INFO: start training
+2026-10-29 15:56:41,847 transreid.train INFO: Using 4 GPUs for DDP training
+2026-10-29 15:56:42,020 transreid.train INFO: Feature dimension: 768; identities: 500
+2026-10-29 15:59:14,508 transreid.train INFO: GPD warm start: 500/500 identities, 92133 samples
+2026-10-29 15:59:48,635 transreid.train INFO: Epoch[1] Iteration[50/114] Loss: 0.310, Acc: 0.979, Base Lr: 6.40e-05
+2026-10-29 15:59:48,635 transreid.train INFO: Epoch[1] 0.109, 0.117, 0.204, 0.083
+2026-10-29 16:00:14,674 transreid.train INFO: Epoch[1] Iteration[100/114] Loss: 0.290, Acc: 0.980, Base Lr: 6.40e-05
+2026-10-29 16:00:14,674 transreid.train INFO: Epoch[1] 0.099, 0.111, 0.197, 0.078
+2026-10-29 16:00:21,776 transreid.train INFO: Epoch 1 done. Time per batch: 0.590[s] Total: 67.2[s]
+2026-10-29 16:00:50,916 transreid.train INFO: Epoch[2] Iteration[50/114] Loss: 0.331, Acc: 0.976, Base Lr: 6.40e-05
+2026-10-29 16:00:50,916 transreid.train INFO: Epoch[2] 0.117, 0.122, 0.206, 0.090
+2026-10-29 16:01:17,381 transreid.train INFO: Epoch[2] Iteration[100/114] Loss: 0.305, Acc: 0.979, Base Lr: 6.40e-05
+2026-10-29 16:01:17,381 transreid.train INFO: Epoch[2] 0.105, 0.114, 0.198, 0.084
+2026-10-29 16:01:24,452 transreid.train INFO: Epoch 2 done. Time per batch: 0.550[s] Total: 62.7[s]
+2026-10-29 16:01:53,370 transreid.train INFO: Epoch[3] Iteration[50/114] Loss: 0.333, Acc: 0.976, Base Lr: 6.40e-05
+2026-10-29 16:01:53,370 transreid.train INFO: Epoch[3] 0.118, 0.122, 0.204, 0.090
+2026-10-29 16:02:19,368 transreid.train INFO: Epoch[3] Iteration[100/114] Loss: 0.300, Acc: 0.979, Base Lr: 6.40e-05
+2026-10-29 16:02:19,369 transreid.train INFO: Epoch[3] 0.103, 0.112, 0.196, 0.083
+2026-10-29 16:02:26,458 transreid.train INFO: Epoch 3 done. Time per batch: 0.544[s] Total: 62.0[s]
+2026-10-29 16:02:55,133 transreid.train INFO: Epoch[4] Iteration[50/115] Loss: 0.340, Acc: 0.976, Base Lr: 6.40e-05
+2026-10-29 16:02:55,134 transreid.train INFO: Epoch[4] 0.122, 0.124, 0.205, 0.092
+2026-10-29 16:03:20,967 transreid.train INFO: Epoch[4] Iteration[100/115] Loss: 0.298, Acc: 0.980, Base Lr: 6.40e-05
+2026-10-29 16:03:20,967 transreid.train INFO: Epoch[4] 0.103, 0.112, 0.197, 0.081
+2026-10-29 16:03:28,576 transreid.train INFO: Epoch 4 done. Time per batch: 0.540[s] Total: 62.1[s]
+2026-10-29 16:03:57,086 transreid.train INFO: Epoch[5] Iteration[50/114] Loss: 0.323, Acc: 0.976, Base Lr: 6.40e-05
+2026-10-29 16:03:57,087 transreid.train INFO: Epoch[5] 0.113, 0.118, 0.205, 0.091
+2026-10-29 16:04:22,822 transreid.train INFO: Epoch[5] Iteration[100/114] Loss: 0.300, Acc: 0.978, Base Lr: 6.40e-05
+2026-10-29 16:04:22,822 transreid.train INFO: Epoch[5] 0.103, 0.111, 0.197, 0.084
+2026-10-29 16:04:29,846 transreid.train INFO: Epoch 5 done. Time per batch: 0.537[s] Total: 61.3[s]
+2026-10-29 16:05:27,264 transreid.train INFO: => Split mode 1: query 2135, total query 2135
+2026-10-29 16:05:34,454 transreid.train INFO: The test feature is normalized
+2026-10-29 16:05:34,521 transreid.train INFO: => Computing DistMat in q-chunks (chunk=4000)
+2026-10-29 16:07:06,417 transreid.train INFO: Starting modality-pair specific evaluation. Query mods: [1, 2, 3], Gallery mods: [1, 2, 3]
+2026-10-29 16:07:15,226 transreid.train INFO:   Pair (Q:1, G:1) -> Rank-1: 42.62%, mAP: 26.54%, mINP: 5.07%
+2026-10-29 16:07:24,002 transreid.train INFO:   Pair (Q:1, G:2) -> Rank-1: 27.21%, mAP: 16.09%, mINP: 2.24%
+2026-10-29 16:07:32,082 transreid.train INFO:   Pair (Q:1, G:3) -> Rank-1: 7.40%, mAP: 5.63%, mINP: 1.09%
+2026-10-29 16:07:40,093 transreid.train INFO:   Pair (Q:2, G:1) -> Rank-1: 24.54%, mAP: 15.65%, mINP: 2.83%
+2026-10-29 16:07:48,081 transreid.train INFO:   Pair (Q:2, G:2) -> Rank-1: 28.01%, mAP: 16.85%, mINP: 2.41%
+2026-10-29 16:07:56,006 transreid.train INFO:   Pair (Q:2, G:3) -> Rank-1: 6.28%, mAP: 5.25%, mINP: 1.04%
+2026-10-29 16:08:03,942 transreid.train INFO:   Pair (Q:3, G:1) -> Rank-1: 7.45%, mAP: 5.85%, mINP: 1.30%
+2026-10-29 16:08:11,881 transreid.train INFO:   Pair (Q:3, G:2) -> Rank-1: 7.96%, mAP: 5.26%, mINP: 1.00%
+2026-10-29 16:08:19,842 transreid.train INFO:   Pair (Q:3, G:3) -> Rank-1: 20.66%, mAP: 13.51%, mINP: 2.28%
+2026-10-29 16:08:19,842 transreid.train INFO: VI-ReID results (Table 5 protocol):
+2026-10-29 16:08:19,842 transreid.train INFO:   Setting   Rank-1     mAP    mINP
+2026-10-29 16:08:19,842 transreid.train INFO:   NIR->RGB    24.54%  15.65%   2.83%
+2026-10-29 16:08:19,842 transreid.train INFO:   TIR->RGB     7.45%   5.85%   1.30%
+2026-10-29 16:08:19,842 transreid.train INFO: Modality-pair results (Table 6 protocol):
+2026-10-29 16:08:19,842 transreid.train INFO:   Query Gallery  Rank-1     mAP    mINP
+2026-10-29 16:08:19,842 transreid.train INFO:     RGB     RGB  42.62%  26.54%   5.07%
+2026-10-29 16:08:19,842 transreid.train INFO:     RGB     NIR  27.21%  16.09%   2.24%
+2026-10-29 16:08:19,842 transreid.train INFO:     RGB     TIR   7.40%   5.63%   1.09%
+2026-10-29 16:08:19,842 transreid.train INFO:     NIR     RGB  24.54%  15.65%   2.83%
+2026-10-29 16:08:19,843 transreid.train INFO:     NIR     NIR  28.01%  16.85%   2.41%
+2026-10-29 16:08:19,843 transreid.train INFO:     NIR     TIR   6.28%   5.25%   1.04%
+2026-10-29 16:08:19,843 transreid.train INFO:     TIR     RGB   7.45%   5.85%   1.30%
+2026-10-29 16:08:19,843 transreid.train INFO:     TIR     NIR   7.96%   5.26%   1.00%
+2026-10-29 16:08:19,843 transreid.train INFO:     TIR     TIR  20.66%  13.51%   2.28%
+2026-10-29 16:08:19,843 transreid.train INFO: AG-ReID results (Table 4 protocol; all modalities):
+2026-10-29 16:08:34,554 transreid.train INFO:   A->G -> mAP: 11.47%, Rank-1: 31.33%, Rank-10: 58.74%
+2026-10-29 16:08:46,715 transreid.train INFO:   G->A -> mAP: 13.31%, Rank-1: 30.33%, Rank-10: 54.24%
+2026-10-29 16:08:46,746 transreid.train INFO: Validation Results - Epoch: 5
+2026-10-29 16:08:46,746 transreid.train INFO: mAP: 11.03%
+2026-10-29 16:08:46,746 transreid.train INFO: CMC curve, Rank-1 : 29.68%
+2026-10-29 16:08:46,746 transreid.train INFO: CMC curve, Rank-5 : 46.35%
+2026-10-29 16:08:46,746 transreid.train INFO: CMC curve, Rank-10: 54.68%
+2026-10-29 16:09:16,900 transreid.train INFO: Epoch[6] Iteration[50/114] Loss: 0.334, Acc: 0.976, Base Lr: 6.40e-05
+2026-10-29 16:09:16,901 transreid.train INFO: Epoch[6] 0.117, 0.120, 0.205, 0.094
+2026-10-29 16:09:42,630 transreid.train INFO: Epoch[6] Iteration[100/114] Loss: 0.308, Acc: 0.979, Base Lr: 6.40e-05
+2026-10-29 16:09:42,631 transreid.train INFO: Epoch[6] 0.106, 0.113, 0.198, 0.087
+2026-10-29 16:09:50,034 transreid.train INFO: Epoch 6 done. Time per batch: 0.555[s] Total: 63.3[s]
+2026-10-29 16:10:19,822 transreid.train INFO: Epoch[7] Iteration[50/114] Loss: 0.313, Acc: 0.979, Base Lr: 6.40e-05
+2026-10-29 16:10:19,822 transreid.train INFO: Epoch[7] 0.107, 0.120, 0.204, 0.084
+2026-10-29 16:10:45,751 transreid.train INFO: Epoch[7] Iteration[100/114] Loss: 0.293, Acc: 0.980, Base Lr: 6.40e-05
+2026-10-29 16:10:45,751 transreid.train INFO: Epoch[7] 0.099, 0.112, 0.197, 0.081
+2026-10-29 16:10:53,194 transreid.train INFO: Epoch 7 done. Time per batch: 0.554[s] Total: 63.2[s]
+2026-10-29 16:11:23,123 transreid.train INFO: Epoch[8] Iteration[50/114] Loss: 0.339, Acc: 0.976, Base Lr: 6.40e-05
+2026-10-29 16:11:23,123 transreid.train INFO: Epoch[8] 0.120, 0.122, 0.206, 0.094
+2026-10-29 16:11:49,325 transreid.train INFO: Epoch[8] Iteration[100/114] Loss: 0.306, Acc: 0.979, Base Lr: 6.40e-05
+2026-10-29 16:11:49,325 transreid.train INFO: Epoch[8] 0.104, 0.114, 0.198, 0.087
+2026-10-29 16:11:56,820 transreid.train INFO: Epoch 8 done. Time per batch: 0.558[s] Total: 63.6[s]
+2026-10-29 16:12:26,641 transreid.train INFO: Epoch[9] Iteration[50/114] Loss: 0.319, Acc: 0.978, Base Lr: 6.40e-05
+2026-10-29 16:12:26,642 transreid.train INFO: Epoch[9] 0.111, 0.118, 0.204, 0.088
+2026-10-29 16:12:53,008 transreid.train INFO: Epoch[9] Iteration[100/114] Loss: 0.304, Acc: 0.978, Base Lr: 6.40e-05
+2026-10-29 16:12:53,008 transreid.train INFO: Epoch[9] 0.105, 0.111, 0.196, 0.087
+2026-10-29 16:13:00,526 transreid.train INFO: Epoch 9 done. Time per batch: 0.559[s] Total: 63.7[s]
+2026-10-29 16:13:30,262 transreid.train INFO: Epoch[10] Iteration[50/114] Loss: 0.325, Acc: 0.978, Base Lr: 6.40e-05
+2026-10-29 16:13:30,262 transreid.train INFO: Epoch[10] 0.113, 0.121, 0.207, 0.089
+2026-10-29 16:13:56,418 transreid.train INFO: Epoch[10] Iteration[100/114] Loss: 0.297, Acc: 0.978, Base Lr: 6.40e-05
+2026-10-29 16:13:56,418 transreid.train INFO: Epoch[10] 0.101, 0.111, 0.198, 0.083
+2026-10-29 16:14:03,887 transreid.train INFO: Epoch 10 done. Time per batch: 0.556[s] Total: 63.4[s]
+2026-10-29 16:15:05,990 transreid.train INFO: => Split mode 1: query 2135, total query 2135
+2026-10-29 16:15:07,611 transreid.train INFO: The test feature is normalized
+2026-10-29 16:15:07,642 transreid.train INFO: => Computing DistMat in q-chunks (chunk=4000)
+2026-10-29 16:16:38,498 transreid.train INFO: Starting modality-pair specific evaluation. Query mods: [1, 2, 3], Gallery mods: [1, 2, 3]
+2026-10-29 16:16:46,688 transreid.train INFO:   Pair (Q:1, G:1) -> Rank-1: 42.25%, mAP: 26.52%, mINP: 5.07%
+2026-10-29 16:16:55,195 transreid.train INFO:   Pair (Q:1, G:2) -> Rank-1: 27.26%, mAP: 16.07%, mINP: 2.24%
+2026-10-29 16:17:03,260 transreid.train INFO:   Pair (Q:1, G:3) -> Rank-1: 7.35%, mAP: 5.62%, mINP: 1.09%
+2026-10-29 16:17:11,736 transreid.train INFO:   Pair (Q:2, G:1) -> Rank-1: 24.40%, mAP: 15.64%, mINP: 2.82%
+2026-10-29 16:17:19,794 transreid.train INFO:   Pair (Q:2, G:2) -> Rank-1: 27.87%, mAP: 16.82%, mINP: 2.41%
+2026-10-29 16:17:28,030 transreid.train INFO:   Pair (Q:2, G:3) -> Rank-1: 6.23%, mAP: 5.25%, mINP: 1.05%
+2026-10-29 16:17:37,008 transreid.train INFO:   Pair (Q:3, G:1) -> Rank-1: 7.21%, mAP: 5.86%, mINP: 1.30%
+2026-10-29 16:17:46,043 transreid.train INFO:   Pair (Q:3, G:2) -> Rank-1: 7.78%, mAP: 5.25%, mINP: 1.00%
+2026-10-29 16:17:54,917 transreid.train INFO:   Pair (Q:3, G:3) -> Rank-1: 20.89%, mAP: 13.53%, mINP: 2.28%
+2026-10-29 16:17:54,918 transreid.train INFO: VI-ReID results (Table 5 protocol):
+2026-10-29 16:17:54,918 transreid.train INFO:   Setting   Rank-1     mAP    mINP
+2026-10-29 16:17:54,918 transreid.train INFO:   NIR->RGB    24.40%  15.64%   2.82%
+2026-10-29 16:17:54,918 transreid.train INFO:   TIR->RGB     7.21%   5.86%   1.30%
+2026-10-29 16:17:54,918 transreid.train INFO: Modality-pair results (Table 6 protocol):
+2026-10-29 16:17:54,918 transreid.train INFO:   Query Gallery  Rank-1     mAP    mINP
+2026-10-29 16:17:54,918 transreid.train INFO:     RGB     RGB  42.25%  26.52%   5.07%
+2026-10-29 16:17:54,918 transreid.train INFO:     RGB     NIR  27.26%  16.07%   2.24%
+2026-10-29 16:17:54,918 transreid.train INFO:     RGB     TIR   7.35%   5.62%   1.09%
+2026-10-29 16:17:54,918 transreid.train INFO:     NIR     RGB  24.40%  15.64%   2.82%
+2026-10-29 16:17:54,918 transreid.train INFO:     NIR     NIR  27.87%  16.82%   2.41%
+2026-10-29 16:17:54,919 transreid.train INFO:     NIR     TIR   6.23%   5.25%   1.05%
+2026-10-29 16:17:54,919 transreid.train INFO:     TIR     RGB   7.21%   5.86%   1.30%
+2026-10-29 16:17:54,919 transreid.train INFO:     TIR     NIR   7.78%   5.25%   1.00%
+2026-10-29 16:17:54,919 transreid.train INFO:     TIR     TIR  20.89%  13.53%   2.28%
+2026-10-29 16:17:54,920 transreid.train INFO: AG-ReID results (Table 4 protocol; all modalities):
+2026-10-29 16:18:08,516 transreid.train INFO:   A->G -> mAP: 11.46%, Rank-1: 31.33%, Rank-10: 58.52%
+2026-10-29 16:18:21,129 transreid.train INFO:   G->A -> mAP: 13.31%, Rank-1: 30.33%, Rank-10: 54.24%
+2026-10-29 16:18:21,144 transreid.train INFO: Validation Results - Epoch: 10
+2026-10-29 16:18:21,144 transreid.train INFO: mAP: 11.03%
+2026-10-29 16:18:21,144 transreid.train INFO: CMC curve, Rank-1 : 29.73%
+2026-10-29 16:18:21,144 transreid.train INFO: CMC curve, Rank-5 : 46.32%
+2026-10-29 16:18:21,144 transreid.train INFO: CMC curve, Rank-10: 54.49%
+2026-10-29 16:18:51,943 transreid.train INFO: Epoch[11] Iteration[50/114] Loss: 0.315, Acc: 0.979, Base Lr: 6.40e-05
+2026-10-29 16:18:51,944 transreid.train INFO: Epoch[11] 0.110, 0.116, 0.204, 0.086
+2026-10-29 16:19:17,460 transreid.train INFO: Epoch[11] Iteration[100/114] Loss: 0.286, Acc: 0.981, Base Lr: 6.40e-05
+2026-10-29 16:19:17,461 transreid.train INFO: Epoch[11] 0.097, 0.109, 0.196, 0.079
+2026-10-29 16:19:25,078 transreid.train INFO: Epoch 11 done. Time per batch: 0.559[s] Total: 63.7[s]
+2026-10-29 16:19:55,109 transreid.train INFO: Epoch[12] Iteration[50/115] Loss: 0.320, Acc: 0.976, Base Lr: 6.40e-05
+2026-10-29 16:19:55,109 transreid.train INFO: Epoch[12] 0.114, 0.118, 0.202, 0.086
+2026-10-29 16:20:20,782 transreid.train INFO: Epoch[12] Iteration[100/115] Loss: 0.299, Acc: 0.979, Base Lr: 6.40e-05
+2026-10-29 16:20:20,782 transreid.train INFO: Epoch[12] 0.104, 0.112, 0.196, 0.081
+2026-10-29 16:20:28,786 transreid.train INFO: Epoch 12 done. Time per batch: 0.554[s] Total: 63.7[s]
+2026-10-29 16:20:58,590 transreid.train INFO: Epoch[13] Iteration[50/114] Loss: 0.331, Acc: 0.975, Base Lr: 6.40e-05
+2026-10-29 16:20:58,590 transreid.train INFO: Epoch[13] 0.117, 0.121, 0.204, 0.091
+2026-10-29 16:21:24,301 transreid.train INFO: Epoch[13] Iteration[100/114] Loss: 0.308, Acc: 0.977, Base Lr: 6.40e-05
+2026-10-29 16:21:24,301 transreid.train INFO: Epoch[13] 0.107, 0.113, 0.198, 0.086
+2026-10-29 16:21:31,793 transreid.train INFO: Epoch 13 done. Time per batch: 0.553[s] Total: 63.0[s]
+2026-10-29 16:22:01,397 transreid.train INFO: Epoch[14] Iteration[50/114] Loss: 0.302, Acc: 0.979, Base Lr: 6.40e-05
+2026-10-29 16:22:01,397 transreid.train INFO: Epoch[14] 0.106, 0.113, 0.205, 0.081
+2026-10-29 16:22:27,000 transreid.train INFO: Epoch[14] Iteration[100/114] Loss: 0.281, Acc: 0.981, Base Lr: 6.40e-05
+2026-10-29 16:22:27,000 transreid.train INFO: Epoch[14] 0.096, 0.107, 0.197, 0.076
+2026-10-29 16:22:34,473 transreid.train INFO: Epoch 14 done. Time per batch: 0.550[s] Total: 62.7[s]
+2026-10-29 16:23:04,100 transreid.train INFO: Epoch[15] Iteration[50/115] Loss: 0.319, Acc: 0.975, Base Lr: 6.40e-05
+2026-10-29 16:23:04,101 transreid.train INFO: Epoch[15] 0.115, 0.115, 0.203, 0.086
+2026-10-29 16:23:30,211 transreid.train INFO: Epoch[15] Iteration[100/115] Loss: 0.296, Acc: 0.978, Base Lr: 6.40e-05
+2026-10-29 16:23:30,212 transreid.train INFO: Epoch[15] 0.103, 0.109, 0.195, 0.082
+2026-10-29 16:23:38,188 transreid.train INFO: Epoch 15 done. Time per batch: 0.554[s] Total: 63.7[s]
+2026-10-29 16:24:39,769 transreid.train INFO: => Split mode 1: query 2135, total query 2135
+2026-10-29 16:24:40,819 transreid.train INFO: The test feature is normalized
+2026-10-29 16:24:40,852 transreid.train INFO: => Computing DistMat in q-chunks (chunk=4000)
+2026-10-29 16:26:09,940 transreid.train INFO: Starting modality-pair specific evaluation. Query mods: [1, 2, 3], Gallery mods: [1, 2, 3]
+2026-10-29 16:26:18,184 transreid.train INFO:   Pair (Q:1, G:1) -> Rank-1: 42.44%, mAP: 26.55%, mINP: 5.07%
+2026-10-29 16:26:26,785 transreid.train INFO:   Pair (Q:1, G:2) -> Rank-1: 27.17%, mAP: 16.10%, mINP: 2.24%
+2026-10-29 16:26:35,184 transreid.train INFO:   Pair (Q:1, G:3) -> Rank-1: 7.49%, mAP: 5.63%, mINP: 1.09%
+2026-10-29 16:26:43,395 transreid.train INFO:   Pair (Q:2, G:1) -> Rank-1: 24.78%, mAP: 15.65%, mINP: 2.83%
+2026-10-29 16:26:51,992 transreid.train INFO:   Pair (Q:2, G:2) -> Rank-1: 28.06%, mAP: 16.86%, mINP: 2.42%
+2026-10-29 16:27:00,260 transreid.train INFO:   Pair (Q:2, G:3) -> Rank-1: 6.28%, mAP: 5.26%, mINP: 1.05%
+2026-10-29 16:27:08,319 transreid.train INFO:   Pair (Q:3, G:1) -> Rank-1: 7.35%, mAP: 5.86%, mINP: 1.30%
+2026-10-29 16:27:16,356 transreid.train INFO:   Pair (Q:3, G:2) -> Rank-1: 7.87%, mAP: 5.26%, mINP: 1.00%
+2026-10-29 16:27:24,302 transreid.train INFO:   Pair (Q:3, G:3) -> Rank-1: 20.70%, mAP: 13.53%, mINP: 2.28%
+2026-10-29 16:27:24,302 transreid.train INFO: VI-ReID results (Table 5 protocol):
+2026-10-29 16:27:24,303 transreid.train INFO:   Setting   Rank-1     mAP    mINP
+2026-10-29 16:27:24,303 transreid.train INFO:   NIR->RGB    24.78%  15.65%   2.83%
+2026-10-29 16:27:24,303 transreid.train INFO:   TIR->RGB     7.35%   5.86%   1.30%
+2026-10-29 16:27:24,303 transreid.train INFO: Modality-pair results (Table 6 protocol):
+2026-10-29 16:27:24,303 transreid.train INFO:   Query Gallery  Rank-1     mAP    mINP
+2026-10-29 16:27:24,303 transreid.train INFO:     RGB     RGB  42.44%  26.55%   5.07%
+2026-10-29 16:27:24,303 transreid.train INFO:     RGB     NIR  27.17%  16.10%   2.24%
+2026-10-29 16:27:24,303 transreid.train INFO:     RGB     TIR   7.49%   5.63%   1.09%
+2026-10-29 16:27:24,303 transreid.train INFO:     NIR     RGB  24.78%  15.65%   2.83%
+2026-10-29 16:27:24,303 transreid.train INFO:     NIR     NIR  28.06%  16.86%   2.42%
+2026-10-29 16:27:24,303 transreid.train INFO:     NIR     TIR   6.28%   5.26%   1.05%
+2026-10-29 16:27:24,303 transreid.train INFO:     TIR     RGB   7.35%   5.86%   1.30%
+2026-10-29 16:27:24,303 transreid.train INFO:     TIR     NIR   7.87%   5.26%   1.00%
+2026-10-29 16:27:24,303 transreid.train INFO:     TIR     TIR  20.70%  13.53%   2.28%
+2026-10-29 16:27:24,304 transreid.train INFO: AG-ReID results (Table 4 protocol; all modalities):
+2026-10-29 16:27:37,006 transreid.train INFO:   A->G -> mAP: 11.48%, Rank-1: 31.33%, Rank-10: 58.74%
+2026-10-29 16:27:49,337 transreid.train INFO:   G->A -> mAP: 13.31%, Rank-1: 30.54%, Rank-10: 54.14%
+2026-10-29 16:27:49,352 transreid.train INFO: Validation Results - Epoch: 15
+2026-10-29 16:27:49,352 transreid.train INFO: mAP: 11.04%
+2026-10-29 16:27:49,352 transreid.train INFO: CMC curve, Rank-1 : 29.70%
+2026-10-29 16:27:49,352 transreid.train INFO: CMC curve, Rank-5 : 46.46%
+2026-10-29 16:27:49,352 transreid.train INFO: CMC curve, Rank-10: 54.54%
+2026-10-29 16:28:20,376 transreid.train INFO: Epoch[16] Iteration[50/115] Loss: 0.317, Acc: 0.979, Base Lr: 6.40e-05
+2026-10-29 16:28:20,376 transreid.train INFO: Epoch[16] 0.109, 0.120, 0.205, 0.086
+2026-10-29 16:28:46,250 transreid.train INFO: Epoch[16] Iteration[100/115] Loss: 0.299, Acc: 0.978, Base Lr: 6.40e-05
+2026-10-29 16:28:46,250 transreid.train INFO: Epoch[16] 0.102, 0.112, 0.197, 0.083
+2026-10-29 16:28:54,259 transreid.train INFO: Epoch 16 done. Time per batch: 0.563[s] Total: 64.7[s]
+2026-10-29 16:29:24,157 transreid.train INFO: Epoch[17] Iteration[50/114] Loss: 0.324, Acc: 0.977, Base Lr: 6.40e-05
+2026-10-29 16:29:24,158 transreid.train INFO: Epoch[17] 0.115, 0.120, 0.203, 0.087
+2026-10-29 16:29:49,795 transreid.train INFO: Epoch[17] Iteration[100/114] Loss: 0.297, Acc: 0.979, Base Lr: 6.40e-05
+2026-10-29 16:29:49,795 transreid.train INFO: Epoch[17] 0.103, 0.112, 0.196, 0.080
+2026-10-29 16:29:57,387 transreid.train INFO: Epoch 17 done. Time per batch: 0.554[s] Total: 63.1[s]
+2026-10-29 16:30:27,245 transreid.train INFO: Epoch[18] Iteration[50/114] Loss: 0.321, Acc: 0.979, Base Lr: 6.40e-05
+2026-10-29 16:30:27,245 transreid.train INFO: Epoch[18] 0.110, 0.123, 0.205, 0.086
+2026-10-29 16:30:53,126 transreid.train INFO: Epoch[18] Iteration[100/114] Loss: 0.289, Acc: 0.981, Base Lr: 6.40e-05
+2026-10-29 16:30:53,126 transreid.train INFO: Epoch[18] 0.096, 0.112, 0.195, 0.079
+2026-10-29 16:31:00,676 transreid.train INFO: Epoch 18 done. Time per batch: 0.555[s] Total: 63.3[s]
+2026-10-29 16:31:30,811 transreid.train INFO: Epoch[19] Iteration[50/114] Loss: 0.326, Acc: 0.977, Base Lr: 6.40e-05
+2026-10-29 16:31:30,811 transreid.train INFO: Epoch[19] 0.114, 0.121, 0.205, 0.089
+2026-10-29 16:31:56,185 transreid.train INFO: Epoch[19] Iteration[100/114] Loss: 0.301, Acc: 0.979, Base Lr: 6.40e-05
+2026-10-29 16:31:56,185 transreid.train INFO: Epoch[19] 0.102, 0.113, 0.198, 0.084
+2026-10-29 16:32:03,646 transreid.train INFO: Epoch 19 done. Time per batch: 0.552[s] Total: 63.0[s]
+2026-10-29 16:32:34,134 transreid.train INFO: Epoch[20] Iteration[50/114] Loss: 0.312, Acc: 0.979, Base Lr: 6.40e-05
+2026-10-29 16:32:34,134 transreid.train INFO: Epoch[20] 0.108, 0.117, 0.202, 0.085
+2026-10-29 16:32:59,454 transreid.train INFO: Epoch[20] Iteration[100/114] Loss: 0.286, Acc: 0.981, Base Lr: 6.40e-05
+2026-10-29 16:32:59,454 transreid.train INFO: Epoch[20] 0.096, 0.109, 0.196, 0.079
+2026-10-29 16:33:07,123 transreid.train INFO: Epoch 20 done. Time per batch: 0.557[s] Total: 63.5[s]
+2026-10-29 16:34:08,844 transreid.train INFO: => Split mode 1: query 2135, total query 2135
+2026-10-29 16:34:11,025 transreid.train INFO: The test feature is normalized
+2026-10-29 16:34:11,055 transreid.train INFO: => Computing DistMat in q-chunks (chunk=4000)
+2026-10-29 16:35:28,938 transreid.train INFO: Starting modality-pair specific evaluation. Query mods: [1, 2, 3], Gallery mods: [1, 2, 3]
+2026-10-29 16:35:36,869 transreid.train INFO:   Pair (Q:1, G:1) -> Rank-1: 42.25%, mAP: 26.52%, mINP: 5.07%
+2026-10-29 16:35:44,934 transreid.train INFO:   Pair (Q:1, G:2) -> Rank-1: 26.98%, mAP: 16.07%, mINP: 2.24%
+2026-10-29 16:35:52,932 transreid.train INFO:   Pair (Q:1, G:3) -> Rank-1: 7.40%, mAP: 5.63%, mINP: 1.09%
+2026-10-29 16:36:00,964 transreid.train INFO:   Pair (Q:2, G:1) -> Rank-1: 24.50%, mAP: 15.66%, mINP: 2.82%
+2026-10-29 16:36:09,188 transreid.train INFO:   Pair (Q:2, G:2) -> Rank-1: 27.92%, mAP: 16.84%, mINP: 2.41%
+2026-10-29 16:36:17,222 transreid.train INFO:   Pair (Q:2, G:3) -> Rank-1: 6.42%, mAP: 5.26%, mINP: 1.05%
+2026-10-29 16:36:25,173 transreid.train INFO:   Pair (Q:3, G:1) -> Rank-1: 7.35%, mAP: 5.86%, mINP: 1.30%
+2026-10-29 16:36:33,870 transreid.train INFO:   Pair (Q:3, G:2) -> Rank-1: 7.87%, mAP: 5.25%, mINP: 1.00%
+2026-10-29 16:36:42,166 transreid.train INFO:   Pair (Q:3, G:3) -> Rank-1: 20.80%, mAP: 13.54%, mINP: 2.28%
+2026-10-29 16:36:42,167 transreid.train INFO: VI-ReID results (Table 5 protocol):
+2026-10-29 16:36:42,167 transreid.train INFO:   Setting   Rank-1     mAP    mINP
+2026-10-29 16:36:42,167 transreid.train INFO:   NIR->RGB    24.50%  15.66%   2.82%
+2026-10-29 16:36:42,167 transreid.train INFO:   TIR->RGB     7.35%   5.86%   1.30%
+2026-10-29 16:36:42,167 transreid.train INFO: Modality-pair results (Table 6 protocol):
+2026-10-29 16:36:42,167 transreid.train INFO:   Query Gallery  Rank-1     mAP    mINP
+2026-10-29 16:36:42,167 transreid.train INFO:     RGB     RGB  42.25%  26.52%   5.07%
+2026-10-29 16:36:42,167 transreid.train INFO:     RGB     NIR  26.98%  16.07%   2.24%
+2026-10-29 16:36:42,167 transreid.train INFO:     RGB     TIR   7.40%   5.63%   1.09%
+2026-10-29 16:36:42,167 transreid.train INFO:     NIR     RGB  24.50%  15.66%   2.82%
+2026-10-29 16:36:42,167 transreid.train INFO:     NIR     NIR  27.92%  16.84%   2.41%
+2026-10-29 16:36:42,167 transreid.train INFO:     NIR     TIR   6.42%   5.26%   1.05%
+2026-10-29 16:36:42,167 transreid.train INFO:     TIR     RGB   7.35%   5.86%   1.30%
+2026-10-29 16:36:42,167 transreid.train INFO:     TIR     NIR   7.87%   5.25%   1.00%
+2026-10-29 16:36:42,167 transreid.train INFO:     TIR     TIR  20.80%  13.54%   2.28%
+2026-10-29 16:36:42,168 transreid.train INFO: AG-ReID results (Table 4 protocol; all modalities):
+2026-10-29 16:36:54,806 transreid.train INFO:   A->G -> mAP: 11.47%, Rank-1: 31.33%, Rank-10: 58.30%
+2026-10-29 16:37:07,075 transreid.train INFO:   G->A -> mAP: 13.31%, Rank-1: 30.38%, Rank-10: 54.35%
+2026-10-29 16:37:07,088 transreid.train INFO: Validation Results - Epoch: 20
+2026-10-29 16:37:07,088 transreid.train INFO: mAP: 11.03%
+2026-10-29 16:37:07,088 transreid.train INFO: CMC curve, Rank-1 : 29.65%
+2026-10-29 16:37:07,088 transreid.train INFO: CMC curve, Rank-5 : 46.48%
+2026-10-29 16:37:07,088 transreid.train INFO: CMC curve, Rank-10: 54.54%
+2026-10-29 16:37:37,304 transreid.train INFO: Epoch[21] Iteration[50/114] Loss: 0.325, Acc: 0.977, Base Lr: 6.40e-05
+2026-10-29 16:37:37,304 transreid.train INFO: Epoch[21] 0.113, 0.124, 0.206, 0.086
+2026-10-29 16:38:02,664 transreid.train INFO: Epoch[21] Iteration[100/114] Loss: 0.297, Acc: 0.979, Base Lr: 6.40e-05
+2026-10-29 16:38:02,664 transreid.train INFO: Epoch[21] 0.100, 0.115, 0.200, 0.080
+2026-10-29 16:38:10,164 transreid.train INFO: Epoch 21 done. Time per batch: 0.552[s] Total: 62.9[s]
+2026-10-29 16:38:40,026 transreid.train INFO: Epoch[22] Iteration[50/114] Loss: 0.325, Acc: 0.979, Base Lr: 6.40e-05
+2026-10-29 16:38:40,027 transreid.train INFO: Epoch[22] 0.115, 0.116, 0.203, 0.093
+2026-10-29 16:39:05,409 transreid.train INFO: Epoch[22] Iteration[100/114] Loss: 0.300, Acc: 0.980, Base Lr: 6.40e-05
+2026-10-29 16:39:05,409 transreid.train INFO: Epoch[22] 0.103, 0.109, 0.196, 0.086
+2026-10-29 16:39:12,986 transreid.train INFO: Epoch 22 done. Time per batch: 0.551[s] Total: 62.8[s]
+2026-10-29 16:39:43,129 transreid.train INFO: Epoch[23] Iteration[50/114] Loss: 0.307, Acc: 0.979, Base Lr: 6.40e-05
+2026-10-29 16:39:43,129 transreid.train INFO: Epoch[23] 0.109, 0.114, 0.201, 0.082
+2026-10-29 16:40:08,785 transreid.train INFO: Epoch[23] Iteration[100/114] Loss: 0.287, Acc: 0.980, Base Lr: 6.40e-05
+2026-10-29 16:40:08,785 transreid.train INFO: Epoch[23] 0.099, 0.108, 0.195, 0.078
+2026-10-29 16:40:16,381 transreid.train INFO: Epoch 23 done. Time per batch: 0.556[s] Total: 63.4[s]
+2026-10-29 16:40:46,385 transreid.train INFO: Epoch[24] Iteration[50/114] Loss: 0.326, Acc: 0.976, Base Lr: 6.40e-05
+2026-10-29 16:40:46,385 transreid.train INFO: Epoch[24] 0.113, 0.121, 0.204, 0.090
+2026-10-29 16:41:11,716 transreid.train INFO: Epoch[24] Iteration[100/114] Loss: 0.300, Acc: 0.978, Base Lr: 6.40e-05
+2026-10-29 16:41:11,716 transreid.train INFO: Epoch[24] 0.102, 0.115, 0.198, 0.082
+2026-10-29 16:41:19,288 transreid.train INFO: Epoch 24 done. Time per batch: 0.552[s] Total: 62.9[s]
+2026-10-29 16:41:49,267 transreid.train INFO: Epoch[25] Iteration[50/114] Loss: 0.324, Acc: 0.976, Base Lr: 6.40e-05
+2026-10-29 16:41:49,268 transreid.train INFO: Epoch[25] 0.114, 0.119, 0.207, 0.088
+2026-10-29 16:42:14,966 transreid.train INFO: Epoch[25] Iteration[100/114] Loss: 0.293, Acc: 0.979, Base Lr: 6.40e-05
+2026-10-29 16:42:14,966 transreid.train INFO: Epoch[25] 0.102, 0.109, 0.198, 0.080
+2026-10-29 16:42:22,540 transreid.train INFO: Epoch 25 done. Time per batch: 0.555[s] Total: 63.3[s]
+2026-10-29 16:43:24,169 transreid.train INFO: => Split mode 1: query 2135, total query 2135
+2026-10-29 16:43:25,399 transreid.train INFO: The test feature is normalized
+2026-10-29 16:43:25,430 transreid.train INFO: => Computing DistMat in q-chunks (chunk=4000)
+2026-10-29 16:44:45,576 transreid.train INFO: Starting modality-pair specific evaluation. Query mods: [1, 2, 3], Gallery mods: [1, 2, 3]
+2026-10-29 16:44:53,499 transreid.train INFO:   Pair (Q:1, G:1) -> Rank-1: 42.01%, mAP: 26.53%, mINP: 5.07%
+2026-10-29 16:45:01,633 transreid.train INFO:   Pair (Q:1, G:2) -> Rank-1: 27.03%, mAP: 16.07%, mINP: 2.24%
+2026-10-29 16:45:09,651 transreid.train INFO:   Pair (Q:1, G:3) -> Rank-1: 7.35%, mAP: 5.63%, mINP: 1.09%
+2026-10-29 16:45:17,751 transreid.train INFO:   Pair (Q:2, G:1) -> Rank-1: 24.50%, mAP: 15.65%, mINP: 2.82%
+2026-10-29 16:45:25,833 transreid.train INFO:   Pair (Q:2, G:2) -> Rank-1: 27.96%, mAP: 16.84%, mINP: 2.41%
+2026-10-29 16:45:33,692 transreid.train INFO:   Pair (Q:2, G:3) -> Rank-1: 6.37%, mAP: 5.26%, mINP: 1.05%
+2026-10-29 16:45:41,510 transreid.train INFO:   Pair (Q:3, G:1) -> Rank-1: 7.26%, mAP: 5.85%, mINP: 1.30%
+2026-10-29 16:45:50,134 transreid.train INFO:   Pair (Q:3, G:2) -> Rank-1: 7.78%, mAP: 5.25%, mINP: 1.00%
+2026-10-29 16:45:58,165 transreid.train INFO:   Pair (Q:3, G:3) -> Rank-1: 20.75%, mAP: 13.56%, mINP: 2.29%
+2026-10-29 16:45:58,166 transreid.train INFO: VI-ReID results (Table 5 protocol):
+2026-10-29 16:45:58,166 transreid.train INFO:   Setting   Rank-1     mAP    mINP
+2026-10-29 16:45:58,166 transreid.train INFO:   NIR->RGB    24.50%  15.65%   2.82%
+2026-10-29 16:45:58,166 transreid.train INFO:   TIR->RGB     7.26%   5.85%   1.30%
+2026-10-29 16:45:58,166 transreid.train INFO: Modality-pair results (Table 6 protocol):
+2026-10-29 16:45:58,166 transreid.train INFO:   Query Gallery  Rank-1     mAP    mINP
+2026-10-29 16:45:58,166 transreid.train INFO:     RGB     RGB  42.01%  26.53%   5.07%
+2026-10-29 16:45:58,166 transreid.train INFO:     RGB     NIR  27.03%  16.07%   2.24%
+2026-10-29 16:45:58,166 transreid.train INFO:     RGB     TIR   7.35%   5.63%   1.09%
+2026-10-29 16:45:58,166 transreid.train INFO:     NIR     RGB  24.50%  15.65%   2.82%
+2026-10-29 16:45:58,166 transreid.train INFO:     NIR     NIR  27.96%  16.84%   2.41%
+2026-10-29 16:45:58,166 transreid.train INFO:     NIR     TIR   6.37%   5.26%   1.05%
+2026-10-29 16:45:58,166 transreid.train INFO:     TIR     RGB   7.26%   5.85%   1.30%
+2026-10-29 16:45:58,167 transreid.train INFO:     TIR     NIR   7.78%   5.25%   1.00%
+2026-10-29 16:45:58,167 transreid.train INFO:     TIR     TIR  20.75%  13.56%   2.29%
+2026-10-29 16:45:58,167 transreid.train INFO: AG-ReID results (Table 4 protocol; all modalities):
+2026-10-29 16:46:10,758 transreid.train INFO:   A->G -> mAP: 11.48%, Rank-1: 31.26%, Rank-10: 58.15%
+2026-10-29 16:46:23,390 transreid.train INFO:   G->A -> mAP: 13.31%, Rank-1: 30.33%, Rank-10: 54.14%
+2026-10-29 16:46:23,403 transreid.train INFO: Validation Results - Epoch: 25
+2026-10-29 16:46:23,403 transreid.train INFO: mAP: 11.03%
+2026-10-29 16:46:23,403 transreid.train INFO: CMC curve, Rank-1 : 29.56%
+2026-10-29 16:46:23,403 transreid.train INFO: CMC curve, Rank-5 : 46.45%
+2026-10-29 16:46:23,403 transreid.train INFO: CMC curve, Rank-10: 54.52%
+2026-10-29 16:46:53,981 transreid.train INFO: Epoch[26] Iteration[50/115] Loss: 0.323, Acc: 0.977, Base Lr: 6.40e-05
+2026-10-29 16:46:53,981 transreid.train INFO: Epoch[26] 0.113, 0.122, 0.206, 0.086
+2026-10-29 16:47:19,826 transreid.train INFO: Epoch[26] Iteration[100/115] Loss: 0.291, Acc: 0.980, Base Lr: 6.40e-05
+2026-10-29 16:47:19,826 transreid.train INFO: Epoch[26] 0.099, 0.111, 0.197, 0.079
+2026-10-29 16:47:27,917 transreid.train INFO: Epoch 26 done. Time per batch: 0.559[s] Total: 64.2[s]
+2026-10-29 16:47:58,485 transreid.train INFO: Epoch[27] Iteration[50/114] Loss: 0.338, Acc: 0.977, Base Lr: 6.40e-05
+2026-10-29 16:47:58,485 transreid.train INFO: Epoch[27] 0.119, 0.125, 0.205, 0.091
+2026-10-29 16:48:24,105 transreid.train INFO: Epoch[27] Iteration[100/114] Loss: 0.304, Acc: 0.979, Base Lr: 6.40e-05
+2026-10-29 16:48:24,106 transreid.train INFO: Epoch[27] 0.105, 0.115, 0.197, 0.083
+2026-10-29 16:48:31,679 transreid.train INFO: Epoch 27 done. Time per batch: 0.559[s] Total: 63.8[s]
+2026-10-29 16:49:01,931 transreid.train INFO: Epoch[28] Iteration[50/114] Loss: 0.292, Acc: 0.980, Base Lr: 6.40e-05
+2026-10-29 16:49:01,932 transreid.train INFO: Epoch[28] 0.102, 0.114, 0.200, 0.075
+2026-10-29 16:49:27,117 transreid.train INFO: Epoch[28] Iteration[100/114] Loss: 0.275, Acc: 0.981, Base Lr: 6.40e-05
+2026-10-29 16:49:27,118 transreid.train INFO: Epoch[28] 0.092, 0.109, 0.194, 0.073
+2026-10-29 16:49:34,666 transreid.train INFO: Epoch 28 done. Time per batch: 0.553[s] Total: 63.0[s]
+2026-10-29 16:50:04,750 transreid.train INFO: Epoch[29] Iteration[50/114] Loss: 0.324, Acc: 0.978, Base Lr: 6.40e-05
+2026-10-29 16:50:04,750 transreid.train INFO: Epoch[29] 0.115, 0.119, 0.205, 0.088
+2026-10-29 16:50:30,286 transreid.train INFO: Epoch[29] Iteration[100/114] Loss: 0.294, Acc: 0.980, Base Lr: 6.40e-05
+2026-10-29 16:50:30,286 transreid.train INFO: Epoch[29] 0.100, 0.111, 0.197, 0.081
+2026-10-29 16:50:37,898 transreid.train INFO: Epoch 29 done. Time per batch: 0.555[s] Total: 63.2[s]
+2026-10-29 16:51:08,100 transreid.train INFO: Epoch[30] Iteration[50/114] Loss: 0.329, Acc: 0.976, Base Lr: 6.40e-05
+2026-10-29 16:51:08,101 transreid.train INFO: Epoch[30] 0.115, 0.118, 0.203, 0.093
+2026-10-29 16:51:33,900 transreid.train INFO: Epoch[30] Iteration[100/114] Loss: 0.301, Acc: 0.978, Base Lr: 6.40e-05
+2026-10-29 16:51:33,900 transreid.train INFO: Epoch[30] 0.102, 0.112, 0.196, 0.085
+2026-10-29 16:51:41,448 transreid.train INFO: Epoch 30 done. Time per batch: 0.557[s] Total: 63.5[s]
+2026-10-29 16:52:43,856 transreid.train INFO: => Split mode 1: query 2135, total query 2135
+2026-10-29 16:52:45,296 transreid.train INFO: The test feature is normalized
+2026-10-29 16:52:45,344 transreid.train INFO: => Computing DistMat in q-chunks (chunk=4000)
+2026-10-29 16:54:03,788 transreid.train INFO: Starting modality-pair specific evaluation. Query mods: [1, 2, 3], Gallery mods: [1, 2, 3]
+2026-10-29 16:54:11,823 transreid.train INFO:   Pair (Q:1, G:1) -> Rank-1: 42.20%, mAP: 26.53%, mINP: 5.07%
+2026-10-29 16:54:20,028 transreid.train INFO:   Pair (Q:1, G:2) -> Rank-1: 27.07%, mAP: 16.07%, mINP: 2.24%
+2026-10-29 16:54:28,189 transreid.train INFO:   Pair (Q:1, G:3) -> Rank-1: 7.26%, mAP: 5.63%, mINP: 1.10%
+2026-10-29 16:54:36,263 transreid.train INFO:   Pair (Q:2, G:1) -> Rank-1: 24.50%, mAP: 15.64%, mINP: 2.82%
+2026-10-29 16:54:44,556 transreid.train INFO:   Pair (Q:2, G:2) -> Rank-1: 27.92%, mAP: 16.85%, mINP: 2.41%
+2026-10-29 16:54:52,717 transreid.train INFO:   Pair (Q:2, G:3) -> Rank-1: 6.37%, mAP: 5.26%, mINP: 1.05%
+2026-10-29 16:55:00,727 transreid.train INFO:   Pair (Q:3, G:1) -> Rank-1: 7.31%, mAP: 5.85%, mINP: 1.31%
+2026-10-29 16:55:08,660 transreid.train INFO:   Pair (Q:3, G:2) -> Rank-1: 7.96%, mAP: 5.25%, mINP: 1.00%
+2026-10-29 16:55:16,718 transreid.train INFO:   Pair (Q:3, G:3) -> Rank-1: 20.89%, mAP: 13.54%, mINP: 2.29%
+2026-10-29 16:55:16,718 transreid.train INFO: VI-ReID results (Table 5 protocol):
+2026-10-29 16:55:16,718 transreid.train INFO:   Setting   Rank-1     mAP    mINP
+2026-10-29 16:55:16,718 transreid.train INFO:   NIR->RGB    24.50%  15.64%   2.82%
+2026-10-29 16:55:16,718 transreid.train INFO:   TIR->RGB     7.31%   5.85%   1.31%
+2026-10-29 16:55:16,718 transreid.train INFO: Modality-pair results (Table 6 protocol):
+2026-10-29 16:55:16,718 transreid.train INFO:   Query Gallery  Rank-1     mAP    mINP
+2026-10-29 16:55:16,718 transreid.train INFO:     RGB     RGB  42.20%  26.53%   5.07%
+2026-10-29 16:55:16,719 transreid.train INFO:     RGB     NIR  27.07%  16.07%   2.24%
+2026-10-29 16:55:16,719 transreid.train INFO:     RGB     TIR   7.26%   5.63%   1.10%
+2026-10-29 16:55:16,719 transreid.train INFO:     NIR     RGB  24.50%  15.64%   2.82%
+2026-10-29 16:55:16,719 transreid.train INFO:     NIR     NIR  27.92%  16.85%   2.41%
+2026-10-29 16:55:16,719 transreid.train INFO:     NIR     TIR   6.37%   5.26%   1.05%
+2026-10-29 16:55:16,719 transreid.train INFO:     TIR     RGB   7.31%   5.85%   1.31%
+2026-10-29 16:55:16,719 transreid.train INFO:     TIR     NIR   7.96%   5.25%   1.00%
+2026-10-29 16:55:16,719 transreid.train INFO:     TIR     TIR  20.89%  13.54%   2.29%
+2026-10-29 16:55:16,719 transreid.train INFO: AG-ReID results (Table 4 protocol; all modalities):
+2026-10-29 16:55:29,580 transreid.train INFO:   A->G -> mAP: 11.47%, Rank-1: 31.11%, Rank-10: 58.67%
+2026-10-29 16:55:41,860 transreid.train INFO:   G->A -> mAP: 13.30%, Rank-1: 30.33%, Rank-10: 54.09%
+2026-10-29 16:55:41,872 transreid.train INFO: Validation Results - Epoch: 30
+2026-10-29 16:55:41,873 transreid.train INFO: mAP: 11.03%
+2026-10-29 16:55:41,873 transreid.train INFO: CMC curve, Rank-1 : 29.51%
+2026-10-29 16:55:41,873 transreid.train INFO: CMC curve, Rank-5 : 46.42%
+2026-10-29 16:55:41,873 transreid.train INFO: CMC curve, Rank-10: 54.47%
+2026-10-29 16:55:42,453 transreid.train INFO: EMA checkpoint saved to logs/LRA_UAD_A0_DDP/transformer_ema.pth

@@ -1,0 +1,73 @@
+# Full A0 variant: warm start + camera-aware negative weighting + EMA + flip TTA.
+# Enable components one at a time for ablation; this file is the combined run.
+MODEL:
+  PRETRAIN_CHOICE: 'finetune'
+  PRETRAIN_PATH: 'logs/UAD_1000_DDP/transformer_120.pth'
+  METRIC_LOSS_TYPE: 'wrt'
+  IF_LABELSMOOTH: 'off'
+  IF_WITH_CENTER: 'no'
+  NAME: 'transformer'
+  NO_MARGIN: True
+  TRANSFORMER_TYPE: 'vit_base_in'
+  STRIDE_SIZE: [16, 16]
+  PCA_LOSS_WEIGHT: 0.01
+  GPD_MOMENTUM: 0.2
+
+  LLRD_DECAY: 0.0
+  EMA: True
+  EMA_DECAY: 0.999
+  WRT_CAMERA: True
+  WRT_CAM_NEG_WEIGHT: 0.25
+  WRT_NORM_BETA: 0.0
+  WRT_NORM_WARMUP: 5
+  GPD_WARMSTART: True
+  GPD_COUNT_EMA: False
+  GPD_TAU_INIT: 0.03
+  GPD_TAU_FINAL: 0.03
+  GPD_TAU_WARM: 0
+
+INPUT:
+  SIZE_TRAIN: [256, 128]
+  SIZE_TEST: [256, 128]
+  PROB: 0.5
+  RE_PROB: 0.5
+  PADDING: 10
+  PIXEL_MEAN: [0.5, 0.5, 0.5]
+  PIXEL_STD: [0.5, 0.5, 0.5]
+
+DATASETS:
+  NAMES: ('WHU-MARS')
+  ROOT_DIR: ('/project/code/data')
+  MODALITIES: ['RGB', 'IR', 'Thermal']
+
+DATALOADER:
+  SAMPLER: 'PKM'
+  NUM_INSTANCE: 4
+  NUM_WORKERS: 8
+
+SOLVER:
+  OPTIMIZER_NAME: 'SGD'
+  MAX_EPOCHS: 30
+  BASE_LR: 0.000064
+  SCHEDULER: 'constant'
+  LR_MIN_FACTOR: 1.0
+  IMS_PER_BATCH: 256
+  SEED: 1234
+  WARMUP_METHOD: 'linear'
+  WARMUP_EPOCHS: 0
+  CHECKPOINT_PERIOD: 10
+  LOG_PERIOD: 50
+  EVAL_PERIOD: 5
+  WEIGHT_DECAY: 1e-4
+  WEIGHT_DECAY_BIAS: 1e-4
+  BIAS_LR_FACTOR: 2
+  LOSS_TYPE: "base+pca+gpd"
+
+TEST:
+  IMS_PER_BATCH: 512
+  RE_RANKING: False
+  NECK_FEAT: 'before'
+  FEAT_NORM: 'yes'
+  TTA_FLIP: True
+
+OUTPUT_DIR: './logs/LRA_UAD_full'
